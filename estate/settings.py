@@ -18,7 +18,7 @@ SECRET_KEY = 'on0go$l$aensa&)-#8-o%!=u+5f)!*@631w&ziavk(mtf#(e%z'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['nosso-imobiliaria.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
