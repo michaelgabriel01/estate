@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load static %}
+{% load static i18n %}
+{% load i18n %}
+<html>
+  <link rel="shortcut icon" href="favicon.ico">
+  <head id="header">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% block title %}nosso-imobilaria{% endblock title %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap-theme.min.css">
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+  </head>
+  <body>
+     <div class="row">
+            <div class="col-lg-6">
+              <img class="img-responsive float-left" src="{% static 'image/logo.png' %}" alt="{{ PROJECT_NAME }}"/>
+            </div>
+            <div class="col-lg-6">
+              <a class="btn btn-outline-default float-right" href="#" role="button" style="color: gray;"><i class="fab fa-whatsapp-square"></i>{% trans " Entre em contato" %}</a>
+              <a class="btn btn-outline-default float-right" href="#" role="button" style="color: gray;"><i class="fas fa-wrench"></i>{% trans " Nosso servicos" %}</a>
+              <a class="btn btn-outline-default float-right" href="{% url 'form_photo_upload' %}" role="button" style="color: gray;"><i class="fas fa-warehouse"></i>{% trans " Cadastra seu imovie" %}</a>
+              <a class="btn btn-outline-default float-right" href="{% url 'simple_upload' %}" role="button" style="color: gray;"><i class="fas fa-home"></i>{% trans " Ver os imovies" %}</a>
+            </div>
+        </div>
+    <div class="container">
+    {% block content %}
+    {% endblock %}
+      <div class="row" id="icons">
+        <div class="col-lg-12">
+          <a href="{% url 'home' %}"  class="btn" > <i aria-hidden="true" class="fab fa-facebook-f fa-2x" style="color: #192a56;"></i> </a>
+          <a href="{% url 'home' %}"  class="btn" > <i aria-hidden="true" class="fab fa-twitter fa-2x" style="color: #45aaf2;"></i> </a>
+          <a href="{% url 'home' %}"  class="btn" > <i aria-hidden="true" class="fab fa-instagram fa-2x" style="color: #9b59b6;"></i> </a>
+          <a href="{% url 'home' %}"  class="btn" > <i aria-hidden="true" class="fab fa-linkedin-in fa-2x" style="color: #3498db;"></i> </a>
+          <a href="{% url 'home' %}" class="btn" > <i aria-hidden="true" class="fab fa-youtube fa-2x" style="color: #eb3b5a;"></i> </a>
+        </div>
+      </div>
+    </div>
+    <br>
+    <footer id="footer">
+      <div id="footer-content" class="footer-copyright py-2 text-center">
+        <a href="#">© 2018 Copyright: nossoImobilaria </a>
+      </div>
+    </footer>
+  </body>
+</html>
