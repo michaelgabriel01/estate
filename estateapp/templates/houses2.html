@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+
+{% if charges %}
+<h1>{% trans "House" %}</h1>
+<table class="table table-hover table-bordered text-white">
+    <thead>
+        <tr>
+            <th>{% trans "Payment Code" %}</th>
+            <th>{% trans "Plan" %}</th>
+            <th>{% trans "Amount" %}</th>
+            <th>{% trans "Wallet" %}</th>
+            <th>{% trans "Created Date" %}</th>
+            <th>{% trans "Status" %}</th>
+            <th>{% trans "Voucher" %}</th>
+            <th>{% trans "Download Link" %}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for charge in charges %}
+        <tr>
+            <td>
+            {{ charge.code}}
+            </td>
+            <td>
+            {{ charge.plan.name }}
+            </td>
+            <td>
+            <strong>{{ charge.amount }} BTC</strong>
+            </td>
+            <td>
+            <i class="font-icon font-icon-wallet"></i>
+            <strong>{{ charge.wallet }}</strong>
+            </td>
+            <td><i class="font-icon font-icon-clock"></i> {{ charge.created }}</td>
+            <td>
+                {% if charge.transaction_status == 1 and charge.status == 1 %}
+                <span class="badge badge-success">{% trans "Enabled" %}</span>
+                {% elif charge.status == 2 %}
+                <span class="badge badge-info">{% trans "Consumed" %}</span>
+                {% elif charge.status == 3 %}
+                <span class="badge badge-danger">{% trans "Cancelled" %}</span>
+                {% else %}
+                <span class="badge badge-warning">{% trans "Analising" %}</span>
+                {% endif %}
+            </td>
+            <td>
+                {% if charge.transaction_status == 1 %}
+                    {{ charge.voucher.code }}
+                {% else %}
+                N/A
+                {% endif %}
+            </td>
+            <td>
+                {% if charge.transaction_status == 1 and charge.plan.download_link %}
+                <a href="{{ charge.plan.download_link }}" class="btn btn-primary btn-sm"><i class="fa fa-download"></i> Download</a>
+                {% else %}
+                {% trans "Not available" %}
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+<br>
+<br>
+{% if charges and plans %}
+    <h2>{% trans "Upgrade your plan" %}</h2>
+{% endif %}
+<div class="row">
+  {% for plan in plans %}
+      <div class="col-lg-4 my-1 col-xs-16 text-center">
+        <div class="card bg-info">
+          <div class="card-body text-white">                
+            <h1 class="display-5 mt-1 mb-1"><strong>{{ plan.name }} {% if plan.is_entrance %}{% trans " - Entrance Plan" %}{% endif %}</strong></h1>
+            <h3 class="mb-4">{% trans "plan" %}</h3>
+            <hr>
+            <p class="lead"><strong>{% trans "Binary" %}:</strong> {{ plan.binary|floatformat:"0" }}%</p>
+            <p class="lead"><strong>{% trans "Binary Points" %}:</strong> {{ plan.binary_points }}</p>
+            <p class="lead"><strong>{% trans "Daily Income" %}:</strong> {{ plan.daily_income|floatformat:"2" }}%</p>
+            <p class="lead"><strong>{% trans "Daily Limit" %}:</strong> {{ plan.daily_limit|floatformat:"2" }} BTC</p>
+            <p class="lead"><strong>{% trans "Down" %}:</strong> {{ plan.down|floatformat:"2" }} BTC</p>
+            <br>
+            <a href="{% url "financial-billets" %}?plan={{ plan.id }}" class="btn btn-lg btn-outline-white">{% if charges %}{% trans "Want Change to This" %}{% else %}{% trans "Buy" %}{% endif %}</a><br>
+            <br>
+          </div>
+        </div>
+      </div>
+ {% endfor %}
+</div>
+{% endblock %}

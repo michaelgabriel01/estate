@@ -1,0 +1,113 @@
+{% load static %}
+{% load i18n %}
+{% load bootstrap_pagination %}
+
+{% block content %}
+
+    <div class="card-box">
+    <section class="box-typical">
+        <header class="box-typical-header">
+            <div class="tbl-row">
+                {% if has_house %}
+                <div class="tbl-cell">
+                    <form action="{% url "house" %}" method="GET">
+                        <div class="{% if search_form.s.errors %}error{% endif %}">
+                            <div class="form-control-wrapper">
+                                <div class="input-group">
+                                  {{ search_form.s }}
+                                  <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="submit">{% trans "Search" %}</button>
+                                  </span>
+                                </div>
+
+                                {% if search_form.s.errors %}
+                                <div class="form-tooltip-error">
+                                    <ul>
+                                        {% for error in search_form.s.errors %}
+                                        <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                {% else %}
+                <div class="tbl-cell">
+                    <div class="alert alert-warning alert-border-left alert-close alert-dismissible fade in m-b-0">
+                        <strong>{% trans "Warning" %}!</strong> {% trans "You don't have active users" %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </header>
+        <br>
+        <br>
+        <div class="box-typical-body">
+            {% if house %}
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>{% trans "House Name" %}</th>
+                            <th>{% trans "House City" %}</th>
+                            <th>{% trans "House Neighborhood" %}</th>
+                            <th>{% trans "House ID" %}</th>
+                            <th>{% trans "House Pictures" %}</th>
+                            <th>{% trans "House Status" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for h in house %}
+                        <tr>
+                            <td>
+                            {{ h.house_name }}
+                            </td>
+                            <td>
+                            <strong><a href="{% url "house" %}?search_house={{ h.house_name }}" data-toggle="tooltip" data-placement="bottom" title="{% trans 'Open user in binary tree' %}">{{ h.house_city }}</a></strong>
+                            </td>
+                            <td>
+                            {{ h.house_neighborhood }}
+                            </td>
+                            <td>
+                                <strong>{{ h.house_id }}</strong>
+                            </td>
+                            <td class="table-date">
+                                <a href="{% url "house" %}?search_house={{ h.house_name }}" data-toggle="tooltip" data-placement="bottom" title="{% trans 'Open user in binary tree' %}">{{ h.house_photo }}</a></strong>
+                            </td>
+                            <td class="table-date"><i class="font-icon font-icon-clock"></i> {{ h.house_name }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    </div>
+    <form action="{% url upload_pic %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+        <p>
+            <input id="id_image" type="file" class="" name="image">
+        </p>
+        <input type="submit" value="Submit" />
+    </form>
+    {% if house %}
+        {% bootstrap_paginate house range=10 %}
+    {% endif %}
+
+    {% block js %}
+        {% if not search_found and has_house %}
+        <script>
+            jQuery(function($) {
+                swal("{% trans "Search not found" %}", "{% trans "No results we're found for your search. You'll be redirect to previous page in 5 seconds." %}", "error")
+
+                setInterval(function() {
+                    window.history.back()
+                    window.location.reload();
+                }, 5000);
+            });
+        </script>
+        {% endif %}
+    {% endblock %}
+{% endblock %}
