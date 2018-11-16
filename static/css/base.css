@@ -1,4 +1,4 @@
-html, body{
+body{
     background-color: #EBEBEB;
     margin: 0px;
     padding: 0px;
@@ -16,7 +16,7 @@ html, body{
 }
 #icons {
    position:absolute;
-   bottom:8%;
+   bottom:6%;
 }
 .container {
    max-width: 500px;
@@ -24,4 +24,7 @@ html, body{
 }
 a{
    color: white;
+}
+.card1{
+  background-color: white;
 }
