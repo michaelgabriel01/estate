@@ -13,7 +13,7 @@ class HouseView(TemplateView):
     search_fields = ['house_name', 'house_city', 'house_neighborhood', 'house_id']
 
     def get(self, request):
-        queryset = HouseModel.objects.all().order_by('-house_name')
+        queryset = HouseModel.objects.all().order_by('house_name')
         search_form = SearchForm(request.GET)
         has_house = queryset.exists()
         search_found = has_house
@@ -29,9 +29,11 @@ class HouseView(TemplateView):
 
 
 def home(request):
-    documents = Property.objects.all()
-    return render(request, 'home.html', { 'documents': documents })
+    photo = Property.objects.all()
+    return render(request, 'home.html', { 'photo': photo })
 
+def success(request):
+    return render(request, 'success.html')
 
 def simple_upload(request):
     if request.method == 'POST' and request.FILES['myfile']:
@@ -50,9 +52,12 @@ def form_photo_upload(request):
         form = PropertyForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('success')
     else:
         form = PropertyForm()
     return render(request, 'form_photo_upload.html', {
         'form': form
     })
+
+def service(request):
+    return render(request, 'service.html')
