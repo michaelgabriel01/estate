@@ -25,16 +25,17 @@
               <img class="img-responsive float-left" src="{% static 'image/logo.png' %}" alt="{{ PROJECT_NAME }}"/>
             </div>
             <div class="col-lg-6">
-              <a class="btn btn-outline-default float-right" href="#" role="button" style="color: gray;"><i class="fab fa-whatsapp-square"></i>{% trans " Entre em contato" %}</a>
-              <a class="btn btn-outline-default float-right" href="#" role="button" style="color: gray;"><i class="fas fa-wrench"></i>{% trans " Nosso servicos" %}</a>
+              <a class="btn btn-outline-default float-right" href="https://wa.me/5521975610406" target="blank" role="button" style="color: gray;"><i class="fab fa-whatsapp-square"></i>{% trans " Entre em contato" %}</a>
+              <a class="btn btn-outline-default float-right" href="{% url 'service' %}" role="button" style="color: gray;"><i class="fas fa-wrench"></i>{% trans " Nosso servicos" %}</a>
               <a class="btn btn-outline-default float-right" href="{% url 'form_photo_upload' %}" role="button" style="color: gray;"><i class="fas fa-warehouse"></i>{% trans " Cadastra seu imovie" %}</a>
-              <a class="btn btn-outline-default float-right" href="{% url 'simple_upload' %}" role="button" style="color: gray;"><i class="fas fa-home"></i>{% trans " Ver os imovies" %}</a>
+              <a class="btn btn-outline-default float-right" href="{% url 'house' %}" role="button" style="color: gray;"><i class="fas fa-home"></i>{% trans " Ver os imovies" %}</a>
             </div>
         </div>
     <div class="container">
     {% block content %}
     {% endblock %}
-      <div class="row" id="icons">
+    <br><br><br><br>
+      <div class="row" id="icons4" align="center">
         <div class="col-lg-12">
           <a href="{% url 'home' %}"  class="btn" > <i aria-hidden="true" class="fab fa-facebook-f fa-2x" style="color: #192a56;"></i> </a>
           <a href="{% url 'home' %}"  class="btn" > <i aria-hidden="true" class="fab fa-twitter fa-2x" style="color: #45aaf2;"></i> </a>
@@ -44,10 +45,10 @@
         </div>
       </div>
     </div>
-    <br>
-    <footer id="footer">
-      <div id="footer-content" class="footer-copyright py-2 text-center">
-        <a href="#">© 2018 Copyright: nossoImobilaria </a>
+    
+    <footer id="foot">
+      <div id="footer-content7" class="footer-copyright py-2 text-center">
+        <a href="#" style="color: gray;">© 2018 Copyright: nossoImobilaria</a>
       </div>
     </footer>
   </body>
