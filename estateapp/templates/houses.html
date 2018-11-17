@@ -37,7 +37,7 @@
                 {% else %}
                 <div class="tbl-cell">
                     <div class="alert alert-warning alert-border-left alert-close alert-dismissible fade in m-b-0">
-                        <strong>{% trans "Warning" %}!</strong> {% trans "You don't have House" %}
+                        <strong>{% trans "Warning" %}!</strong> {% trans "You don't have active users" %}
                     </div>
                 </div>
                 {% endif %}
@@ -51,9 +51,12 @@
                 <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
-                            <th>{% trans "Description" %}</th>
+                            <th>{% trans "House Name" %}</th>
                             <th>{% trans "House City" %}</th>
+                            <th>{% trans "House Neighborhood" %}</th>
+                            <th>{% trans "House ID" %}</th>
                             <th>{% trans "House Pictures" %}</th>
+                            <th>{% trans "House Status" %}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,11 +66,18 @@
                             {{ h.house_name }}
                             </td>
                             <td>
-                            {{ h.house_city }}
+                            <strong><a href="{% url "house" %}?search_house={{ h.house_name }}" data-toggle="tooltip" data-placement="bottom" title="{% trans 'Open user in binary tree' %}">{{ h.house_city }}</a></strong>
+                            </td>
+                            <td>
+                            {{ h.house_neighborhood }}
+                            </td>
+                            <td>
+                                <strong>{{ h.house_id }}</strong>
                             </td>
                             <td class="table-date">
-                                <a href="{% url "simple_upload" %}?search_house={{ h.house_name }}" data-toggle="tooltip" data-placement="bottom" title="{% trans 'Open user in binary tree' %}" style="color: #FFA42A;">{{ h.house_photo }}</a></strong>
+                                <a href="{% url "house" %}?search_house={{ h.house_name }}" data-toggle="tooltip" data-placement="bottom" title="{% trans 'Open user in binary tree' %}">{{ h.house_photo }}</a></strong>
                             </td>
+                            <td class="table-date"><i class="font-icon font-icon-clock"></i> {{ h.house_name }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -77,7 +87,6 @@
         </div>
     </section>
     </div>
-    
     {% if house %}
         {% bootstrap_paginate house range=10 %}
     {% endif %}
