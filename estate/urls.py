@@ -13,7 +13,6 @@ urlpatterns = [
     url(r'^house/', views.HouseView.as_view(), name='house'),
     url(r'^uploads/simple/$', views.simple_upload, name='simple_upload'),
     url(r'^uploads/form/$', views.form_photo_upload, name='form_photo_upload'),
-    # path('account/documents/', views.DocumentsView.as_view(), name='core>documents'),
     path('admin/', admin.site.urls),
 
 ]
