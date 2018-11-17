@@ -35,19 +35,7 @@ def home(request):
 def success(request):
     return render(request, 'success.html')
 
-def simple_upload(request):
-    if request.method == 'POST' and request.FILES['myfile']:
-        myfile = request.FILES['myfile']
-        fs = FileSystemStorage()
-        filename = fs.save(myfile.name, myfile)
-        uploaded_file_url = fs.url(filename)
-        return render(request, 'simple_upload.html', {
-            'uploaded_file_url': uploaded_file_url
-        })
-    return render(request, 'simple_upload.html')
-
-
-def form_photo_upload(request):
+def photo_upload(request):
     if request.method == 'POST':
         form = PropertyForm(request.POST, request.FILES)
         if form.is_valid():
@@ -55,7 +43,7 @@ def form_photo_upload(request):
             return redirect('success')
     else:
         form = PropertyForm()
-    return render(request, 'form_photo_upload.html', {
+    return render(request, 'photo_upload.html', {
         'form': form
     })
 
