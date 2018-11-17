@@ -8,8 +8,8 @@ class PropertyForm(forms.ModelForm):
     class Meta:
         model = Property
         fields = (
-            'description', 'property_id', 'price', 'address',
-            'neighborhood', 'city', 'state', 'photo'
+            'description', 'property_id', 'price', 
+            'address', 'city', 'state', 'photo'
         )
 
 class SearchForm(forms.Form):
@@ -18,7 +18,7 @@ class SearchForm(forms.Form):
     s = forms.CharField(
         required=False,
         max_length=254,
-        widget=forms.TextInput(attrs={'autofocus': True, 'class': 'form-control', 'placeholder': _('Search by house name, house city, house neighborhood,  or house id')}),
+        widget=forms.TextInput(attrs={'autofocus': True, 'class': 'form-control', 'placeholder': _('Search by house name or house city')}),
     )
 
     def clean_s(self):
