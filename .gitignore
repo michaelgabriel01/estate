@@ -1,0 +1,6 @@
+.sqlite3
+*pyc
+.env
+venv
+db.sqlite3
+Pipfile

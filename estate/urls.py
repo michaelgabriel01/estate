@@ -9,8 +9,8 @@ urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^success/', views.success, name='success'),
     url(r'^service/', views.service, name='service'),
-    url(r'^house/', views.HouseView.as_view(), name='house'),
-    url(r'^form/photo_upload$', views.photo_upload, name='photo_upload'),
+    url(r'^house/info/', views.PropertyView.as_view(), name='house'),
+    url(r'^form/photo_upload/', views.photo_upload, name='photo_upload'),
     url(r'admin/', admin.site.urls),
 
 ]

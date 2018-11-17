@@ -4,8 +4,8 @@
 {% load bootstrap_pagination %}
 
 {% block content %}
-
-    <div class="card-box">
+<br><br>
+    <div class="card-box" style="background-color: white;">
     <section class="box-typical">
         <header class="box-typical-header">
             <div class="tbl-row">
@@ -51,42 +51,38 @@
                 <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
-                            <th>{% trans "House Name" %}</th>
-                            <th>{% trans "House City" %}</th>
-                            <th>{% trans "House Neighborhood" %}</th>
-                            <th>{% trans "House ID" %}</th>
-                            <th>{% trans "House Pictures" %}</th>
-                            <th>{% trans "House Status" %}</th>
+                            <th>{% trans "Description" %}</th>
+                            <th>{% trans "City" %}</th>
+                            <th>{% trans "Price" %}</th>
+                            <th>{% trans "Photos" %}</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for h in house %}
                         <tr>
                             <td>
-                            {{ h.house_name }}
+                            {{ h.description }}
                             </td>
                             <td>
-                            <strong><a href="{% url "house" %}?search_house={{ h.house_name }}" data-toggle="tooltip" data-placement="bottom" title="{% trans 'Open user in binary tree' %}">{{ h.house_city }}</a></strong>
+                            {{ h.city }}
                             </td>
                             <td>
-                            {{ h.house_neighborhood }}
+                            {{ h.price }}
                             </td>
                             <td>
-                                <strong>{{ h.house_id }}</strong>
+                            <strong><a href="{% url "house" %}?search_house={{ h.description }}" data-toggle="tooltip" data-placement="bottom" title="{% trans 'Open photo' %}">{{ h.photo }}</a></strong>
                             </td>
-                            <td class="table-date">
-                                <a href="{% url "house" %}?search_house={{ h.house_name }}" data-toggle="tooltip" data-placement="bottom" title="{% trans 'Open user in binary tree' %}">{{ h.house_photo }}</a></strong>
-                            </td>
-                            <td class="table-date"><i class="font-icon font-icon-clock"></i> {{ h.house_name }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
                 {% endif %}
+                <br>
             </div>
         </div>
     </section>
     </div>
+    <br>
     {% if house %}
         {% bootstrap_paginate house range=10 %}
     {% endif %}

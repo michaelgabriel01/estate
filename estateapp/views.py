@@ -2,18 +2,18 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from django.core.files.storage import FileSystemStorage
 
-from .models import HouseModel, Property
+from .models import Property
 from .forms import SearchForm, PropertyForm
 from .utils import paginate, search_by
 
 
-class HouseView(TemplateView):
-    template_name = 'houses.html'
+class PropertyView(TemplateView):
+    template_name = 'house.html'
     limit = 10
-    search_fields = ['house_name', 'house_city', 'house_neighborhood', 'house_id']
+    search_fields = ['description', 'city', 'price', 'photo']
 
     def get(self, request):
-        queryset = HouseModel.objects.all().order_by('house_name')
+        queryset = Property.objects.all().order_by('description')
         search_form = SearchForm(request.GET)
         has_house = queryset.exists()
         search_found = has_house

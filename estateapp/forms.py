@@ -1,7 +1,7 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from .models import HouseModel, Property
+from .models import Property
 
 
 class PropertyForm(forms.ModelForm):
@@ -26,8 +26,3 @@ class SearchForm(forms.Form):
         if s and len(s) < 2:
             raise forms.ValidationError(_("The search text must be at least 2 characters"))
         return s
-
-
-class ImageUploadForm(forms.Form):
-    """Image upload form."""
-    image = forms.ImageField()
