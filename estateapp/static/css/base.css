@@ -7,23 +7,9 @@ html, body{
     padding-bottom:60px;
     align-items: center;
 }
-#footer {
-   position:absolute;
-   bottom:0;
-   width:100%;
-   height:60px;   
-   background:#6cf;
-}
-#icons {
-   position:absolute;
-   bottom:6%;
-}
 .container {
    max-width: 500px;
    margin: auto;
-}
-a{
-   color: white;
 }
 .card1{
   background-color: white;
