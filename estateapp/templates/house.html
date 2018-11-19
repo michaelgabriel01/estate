@@ -52,6 +52,7 @@
                     <thead>
                         <tr>
                             <th>{% trans "Description" %}</th>
+                            <th>{% trans "Address" %}</th>
                             <th>{% trans "City" %}</th>
                             <th>{% trans "Price" %}</th>
                             <th>{% trans "Photos" %}</th>
@@ -64,13 +65,16 @@
                             {{ h.description }}
                             </td>
                             <td>
+                            {{ h.address }}
+                            </td>
+                            <td>
                             {{ h.city }}
                             </td>
                             <td>
                             {{ h.price }}
                             </td>
                             <td>
-                            <strong><a href="{% url "house" %}?search_house={{ h.description }}" data-toggle="tooltip" data-placement="bottom" title="{% trans 'Open photo' %}">{{ h.photo }}</a></strong>
+                            <strong><a href="{% url "house" %}?search_house={{ h.description }}" data-toggle="tooltip" data-placement="bottom" title="{% trans 'Open photo' %}"><img src={{ h.photo }}></a></strong>
                             </td>
                         </tr>
                         {% endfor %}
