@@ -13,7 +13,7 @@
     python manage.py migrate
 
 # Environment
-    Computer    Sony Vaio CORE i5
+    Computer Sony Vaio CORE i5
     O.S Ubuntu 18.04lts
     Editor  SublimeText
     Python version  3.6.6
