@@ -24,5 +24,5 @@
     $ python manage.py createsuperuser
 
 # Deployment
-    Deployed to heroku 
+Deployed to heroku 
 https://nosso-imobiliaria.herokuapp.com/
