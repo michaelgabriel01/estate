@@ -1,8 +1,7 @@
 # estate
     A Simple Real Estate WebAPP
-
-    You can register and upload your property (houses) through the form or through the admin interface.
-    You can search for any house by Description, Address, Cityor Price.
+    You can register and upload your property (house(s)) through the django forms or through the admin interface.
+    You can search for any house by Description, Address, City or Price.
 
 # Installation and setup
     First clone the project.
