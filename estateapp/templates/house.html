@@ -74,7 +74,7 @@
                             {{ h.price }}
                             </td>
                             <td>
-                            <strong><a href="{% url "house" %}?search_house={{ h.description }}" data-toggle="tooltip" data-placement="bottom" title="{% trans 'Open photo' %}"><img src={{ h.photo }}></a></strong>
+                            <strong><a href="{% url "house" %}?search_house={{ h.description }}" data-toggle="tooltip" data-placement="bottom" title="{% trans 'Open photo' %}"><img src={{ h.photo.url }} style="width: 150px;"></a></strong>
                             </td>
                         </tr>
                         {% endfor %}
