@@ -24,6 +24,7 @@ class PropertyView(TemplateView):
         
         house = paginate(request, queryset, self.limit)
 
+            # return render(request, self.template_name, {'search_form': search_form})# 'search_form': search_form,
         return render(request, self.template_name, {'house': house, 'search_form': search_form,
             'search_found': search_found, 'has_house': has_house})
 
